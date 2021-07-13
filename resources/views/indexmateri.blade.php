@@ -48,9 +48,9 @@
 
       <nav class="nav-menu d-none d-lg-block mx-auto">
         <ul>
-          <li class="active"><a href="index.html">Beranda</a></li>
+          <li ><a href="{{ url('') }}">Beranda</a></li>
           <li><a href="{{ url('indexmentor') }}">Mentor</a></li>
-          <li><a href="{{ url('indexmateri') }}">Materi</a></li>
+          <li class="active"><a href="{{ url('indexmateri') }}">Materi</a></li>
           <li><a href="contact.html">Tentang Kami</a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -63,18 +63,18 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-content-center align-items-center">
+  {{-- <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Cari Mentor,<br>Sesuai Kebutuhan Mu</h1>
       <h2>Belajar hal-hal yang kamu suka mulai dari<br> pelajaran umum, menari, musik, hingga membuat kopi.</h2>
       <a href="courses.html" class="btn-get-started">Yuk Mulai!</a>
     </div>
-  </section><!-- End Hero -->
+  </section><!-- End Hero --> --}}
 
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    {{-- <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -104,10 +104,10 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section><!-- End About Section --> --}}
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
+    {{-- <section id="counts" class="counts section-bg">
       <div class="container">
 
         <div class="row counters">
@@ -135,7 +135,7 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section><!-- End Counts Section --> --}}
 
     <!-- ======= Why Us Section ======= -->
     <!-- <section id="why-us" class="why-us">
@@ -364,7 +364,7 @@
     </section><!-- End Popular Courses Section -->
 
     <!-- ======= Trainers Section ======= -->
-    <section id="trainers" class="trainers">
+    {{-- <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -377,9 +377,9 @@
             <div class="member">
               <img src="{{ url('assets/img/trainers/'.$mentor->profile_photo_path) }}" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>{{$mentor->name}}</h4>
+                <h4>{{$mentor->name}}</h4> --}}
                 {{-- <span>Web Development</span> --}}
-                <p>
+                {{-- <p>
                   Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
                 </p>
                 <div class="social">
@@ -391,7 +391,7 @@
               </div>
             </div>
           </div>
-          @endforeach
+          @endforeach --}}
 
           <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">

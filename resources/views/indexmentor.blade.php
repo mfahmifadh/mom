@@ -48,8 +48,8 @@
 
       <nav class="nav-menu d-none d-lg-block mx-auto">
         <ul>
-          <li class="active"><a href="index.html">Beranda</a></li>
-          <li><a href="{{ url('indexmentor') }}">Mentor</a></li>
+          <li ><a href="{{ url('') }}">Beranda</a></li>
+          <li class="active"><a href="{{ url('indexmentor') }}">Mentor</a></li>
           <li><a href="{{ url('indexmateri') }}">Materi</a></li>
           <li><a href="contact.html">Tentang Kami</a></li>
         </ul>
@@ -63,17 +63,17 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-content-center align-items-center">
+  {{-- <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Cari Mentor,<br>Sesuai Kebutuhan Mu</h1>
       <h2>Belajar hal-hal yang kamu suka mulai dari<br> pelajaran umum, menari, musik, hingga membuat kopi.</h2>
       <a href="courses.html" class="btn-get-started">Yuk Mulai!</a>
     </div>
-  </section><!-- End Hero -->
+  </section><!-- End Hero --> --}}
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
+    {{-- <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -135,7 +135,7 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section><!-- End Counts Section --> --}}
 
     <!-- ======= Why Us Section ======= -->
     <!-- <section id="why-us" class="why-us">
@@ -269,7 +269,7 @@
     </section>End Features Section -->
 
     <!-- ======= Popular Courses Section ======= -->
-    <section id="popular-courses" class="courses">
+    {{-- <section id="popular-courses" class="courses">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -289,7 +289,7 @@
                 </div>
 
                 <h3><a href="course-details.html">{{$materi->judul}}</a></h3>
-                <p>{{$materi->deskripsi}}</p>
+                <p>{{$materi->deskripsi}}</p> --}}
                 {{-- <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
@@ -301,10 +301,10 @@
                     <i class="bx bx-heart"></i>&nbsp;65
                   </div>
                 </div> --}}
-              </div>
+              {{-- </div>
             </div>
-          </div> <!-- End Course Item-->
-          @endforeach
+          </div> <!-- End Course Item--> --}}
+          {{-- @endforeach --}}
 
           {{-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
@@ -372,7 +372,7 @@
           <p>Mentor Berpengalaman</p>
         </div>
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          @foreach($mentors->take(3) as $mentor)
+          @foreach($mentors as $mentor)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
               <img src="{{ url('assets/img/trainers/'.$mentor->profile_photo_path) }}" class="img-fluid" alt="">
