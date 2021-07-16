@@ -380,7 +380,7 @@
                 <h4>{{$mentor->name}}</h4>
                 {{-- <span>Web Development</span> --}}
                 <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                  {{$mentor->about}}
                 </p>
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>

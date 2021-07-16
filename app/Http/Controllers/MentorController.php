@@ -19,19 +19,19 @@ class MentorController extends Controller
      */
     public function index()
     {
-        return view ('mentor.index');
+        return view('mentor.index');
     }
 
     public function check_mentor($id)
     {
-        $cek_data_mentor        = MentorData::where('user_id',$id)->get()->count();
+        $cek_data_mentor        = MentorData::where('user_id', $id)->get()->count();
         //dump($cek);
-        if($cek_data_mentor == 0){
-            return view ('mentor.page_documents.index');
+        if ($cek_data_mentor == 0) {
+            return view('mentor.page_documents.index');
             // return view ('mentor.index');
-        }else{
-            return redirect ('mentor/dashboard');
-        }  
+        } else {
+            return redirect('mentor/dashboard');
+        }
     }
 
     /**
@@ -51,10 +51,11 @@ class MentorController extends Controller
         $mentor_data->certificate       = $request->input('certificate');
         $mentor_data->status_account    = $request->input('status_account');
         $mentor_data->save();
-         return view('mentor.index')->with('alert-success','Berhasil Menambah Data!');
+        return view('mentor.index')->with('alert-success', 'Berhasil Menambah Data!');
     }
 
-    public function addCourses(){
+    public function addCourses()
+    {
         return view('mentor.add_courses');
     }
 

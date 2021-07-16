@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class MuridController extends Controller
 {
@@ -14,7 +15,7 @@ class MuridController extends Controller
      */
     public function index()
     {
-        return view ('murid.index');
+        return view('murid.index');
     }
 
     /**

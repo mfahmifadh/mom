@@ -278,18 +278,18 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          @foreach($materis->take(3) as $materi)
+          @foreach($materis as $materi)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
-              <img src="{{ url('assets/img/'.$materi->photo) }}" class="img-fluid" alt="...">
+              <img src="{{ url('assets/img/'.$materi->class_photo) }}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4>{{$materi->kategori}}</h4>
-                  <p class="price">Rp.{{$materi->harga}}</p>
+                  <h4>{{$materi->course_category}}</h4>
+                  <p class="price">Rp.{{$materi->class_cost}}</p>
                 </div>
 
-                <h3><a href="course-details.html">{{$materi->judul}}</a></h3>
-                <p>{{$materi->deskripsi}}</p>
+                <h3><a href="materidetail/{{$materi->id}}">{{$materi->class_name}}</a></h3>
+                <p>{{$materi->class_description}}</p>
                 {{-- <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">

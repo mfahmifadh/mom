@@ -16,6 +16,7 @@ class Materi extends Model
         'harga',
         'deskripsi',
         'durasi',
-        'photo'
+        'photo',
+        'id_mentor'
     ];
 }

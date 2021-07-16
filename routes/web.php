@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\MuridController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,17 +24,27 @@ use App\Http\Controllers\BerandaController;
 Route::get('/', [BerandaController::class, 'show']);
 Route::get('/indexmentor', [BerandaController::class, 'showMentor']);
 Route::get('/indexmateri', [BerandaController::class, 'showMateri']);
+Route::get('materidetail/{id_materi}', [BerandaController::class, 'showDetail']);
 
 
 Route::get('/admin/verifikasi-mentor', '\App\Http\Controllers\AdminController@verifikasi');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $mentors = DB::table('users')
+        ->where('users.role_id', '=', '3')
+        ->join('mentor_data', 'users.id', '=', 'mentor_data.user_id')
+        ->where('mentor_data.status_account', '=', '2')
+        ->get();
+
+    $materis = DB::table('class')
+        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+        ->get();
+    return view('dashboard', compact('mentors', 'materis'));
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:murid', 'prefix' => 'murid', 'as' => 'murid.'], function () {
-        Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
+        Route::resource('dashboard', MuridController::class);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
