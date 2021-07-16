@@ -245,7 +245,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('mentor/course') }}" class="nav-link">
+                <a href="{{ url('mentor/course/'. Auth::user()->id) }}" class="nav-link">
                   <i class="nav-icon fas fa-chalkboard-teacher"></i>
                   <p>
                     Kelas
@@ -379,6 +379,32 @@
           "responsive": true,
         });
       });
+      jQuery(document).ready(function ()
+        {
+          jQuery('select[name="course_class_category_id"]').on('change',function(){
+            var cId = jQuery(this).val();
+              if(cId)
+                {
+                  jQuery.ajax({
+                  url : 'courseCategory/' +cId,
+                  type : "GET",
+                  dataType : "json",
+                  success:function(data)
+                    {
+                      console.log(data);
+                      jQuery('select[name="course_category_id"]').empty();
+                      jQuery.each(data, function(key,value){
+                        $('select[name="course_category_id"]').append(' option value="'+ key +'" '+ value +'option');
+                      });
+                    }
+                  });
+                }
+                else
+                {
+                  $('select[name="course_category_id"]').empty();
+                }
+           });
+        }); 
     </script>
     </body>
     </html>

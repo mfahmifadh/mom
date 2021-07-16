@@ -11,7 +11,7 @@ class BerandaController extends Controller
 
     public function index()
     {
-        $mentor = DB::table('users')->where([['role_id', '=', '3'], ['status_id', '=', '2']])->get();
+        $mentor = DB::table('users')->where([['role_id', '=', '3']])->get();
         //dump($mentor);
         return view('index', ['listMentor' => $mentor]);
     }
