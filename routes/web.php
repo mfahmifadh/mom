@@ -44,17 +44,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:murid', 'prefix' => 'murid', 'as' => 'murid.'], function () {
-        Route::resource('dashboard', MuridController::class);
+        Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
-        Route::get('/course', function () {
-            return view('mentor.page_course');
-        });
+        Route::get('/course/{id}', [MentorController::class, 'GetCourse']);
         Route::get('/addCourses', [MentorController::class, 'addCourses']);
         Route::get('/mentor_page/{id}', [MentorController::class, 'check_mentor']);
+        Route::get('/detailCourse/{id}', [MentorController::class, 'GetDetailCourse']);
         //Post
         Route::post('/postDocument', [MentorController::class, 'PostDocument']);
+        Route::post('/postCourse', [MentorController::class, 'PostCourse']);
+        //Update
+        Route::post('/updateCourse/{id}', [MentorController::class, 'UpdateCourse']);
+        Route::get('/editCourse/{id}', [MentorController::class, 'EditCourse']);
+        //Delete
+        Route::delete('/deleteCourse/{id}', [MentorController::class, 'DeleteCourse']);
     });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\AdminController::class);

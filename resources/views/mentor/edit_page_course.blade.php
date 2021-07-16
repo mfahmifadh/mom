@@ -27,16 +27,17 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ url('mentor/postCourse') }}" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                {{ csrf_field() }}
+              @foreach($class as $row)
+              <form action="{{ url('mentor/updateCourse', ['id' => $row->id ]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $row->user_id }}">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Kategori Kelas :</label>
-                        <select name="class_category_id" class="form-control">
-                        <option value="#">-- Pilih Tingkatan --</option>
+                        <select name="class_category_id" class="form-control" readonly>
+                        <option value="{{ $row->class_category_id }}">{{ $row->name }}</option>
                           @foreach($class_category as $data)
                             <option value="{{ $data->id }}">{{ $data->id }} - {{ $data->name }}</option>
                           @endforeach
@@ -47,20 +48,20 @@
                     <div class="col-md-6">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Kategori Materi :</label>
-                        <input type="text" name="course_category" class="form-control" placeholder="Contoh : MTK, IPA, IPS, B.ING, B.IND">
+                        <input type="text" name="course_category" class="form-control" value="{{ $row->course_category }}">
                       </div>
                     </div>
                     <div class="col-md-6">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Nama Kelas :</label>
-                        <input type="text " name="class_name" class="form-control">
+                        <input type="text " name="class_name" class="form-control" value="{{ $row->class_name }}">
                       </div>
                     </div>
                     <div class="col-md-6">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Kategori Kelas :</label>
-                        <select name="class_status" class="form-control">
-                          <option ">-- Pilih Kategori Kelas --</option>
+                        <select name="class_status" class="form-control" readonly> 
+                          <option>{{ $row->class_status }}</option>
                           <option value="Public">Public</option>
                           <option value="Private">Private</option>
                         </select>
@@ -69,25 +70,25 @@
                     <div class="col-md-3">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Jumlah Max. Murid :</label>
-                        <input type="number" name="class_member_max" class="form-control">
+                        <input type="number" name="class_member_max" class="form-control" value="{{ $row->class_member_max }}">
                       </div>
                     </div>
                     <div class="col-md-3">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Jumlah Jam/Perhari :</label>
-                        <input type="text" name="class_time_perday" class="form-control" placeholder="Contoh : 8 Jam">
+                        <input type="text" name="class_time_perday" class="form-control" value="{{ $row->class_time_perday }}">
                       </div>
                     </div>
                     <div class="col-md-3">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Jumlah Pertemuan/Perbulan :</label>
-                        <input type="text" name="class_permonth" class="form-control" placeholder="Contoh : 8 Pertemuan">
+                        <input type="text" name="class_permonth" class="form-control" value="{{ $row->class_permonth }}">
                       </div>
                     </div>
                     <div class="col-md-3">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Biaya :</label>
-                        <input type="text" name="class_cost" class="form-control" placeholder="Contoh : 500.000">
+                        <input type="text" name="class_cost" class="form-control" value="{{ $row->class_cost }}">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -107,7 +108,7 @@
                     <div class="col-md-6">  
                       <div class="form-group">
                         <label for="exampleInputPassword1">Deskripsi Kelas :</label>
-                        <input type="text" name="class_description" class="form-control" style="height  :20vh;">
+                        <input type="text" name="class_description" class="form-control" style="height:20vh;" value="{{ $row->class_description }}">
                       </div>
                     </div>
                 </div>
@@ -116,6 +117,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+                @endforeach
               </form>
             </div>
             <!-- /.card -->
