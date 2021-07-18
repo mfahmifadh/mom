@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
-use App\Http\Controllers\MuridController;
+use App\Http\Controllers\recommendationController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -26,7 +26,7 @@ Route::get('/indexmentor', [BerandaController::class, 'showMentor']);
 Route::get('/indexmateri', [BerandaController::class, 'showMateri']);
 Route::get('materidetail/{id_materi}', [BerandaController::class, 'showDetail']);
 
-
+Route::get('/recommendation', [recommendationController::class, 'recommendation']);
 Route::get('/admin/verifikasi-mentor', '\App\Http\Controllers\AdminController@verifikasi');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
