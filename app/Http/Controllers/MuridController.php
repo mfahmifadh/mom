@@ -18,6 +18,22 @@ class MuridController extends Controller
         return view('murid.index');
     }
 
+    public function Detail($id)
+    {
+        $qry = DB::table('class')
+            ->where('class.id', $id)
+            ->join('users AS user', 'class.user_id', '=', 'user.id')
+            ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+            ->select('class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
+            ->get();
+        return view('murid.dashboardmateri', ['materi' => $qry]);
+    }
+
+    public function recommend()
+    {
+        return view('murid.recommendmentor');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

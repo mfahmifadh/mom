@@ -133,7 +133,7 @@
       </section><!-- End Cource Details Section -->
   
       <!-- ======= Cource Details Tabs Section ======= -->
-      <section id="cource-details-tabs" class="cource-details-tabs">
+      {{-- <section id="cource-details-tabs" class="cource-details-tabs">
         <div class="container" data-aos="fade-up">
   
           <div class="row">
@@ -223,7 +223,7 @@
           </div>
   
         </div>
-      </section><!-- End Cource Details Tabs Section -->
+      </section><!-- End Cource Details Tabs Section --> --}}
 
     <!-- ======= About Section ======= -->
     {{-- <section id="about" class="about">

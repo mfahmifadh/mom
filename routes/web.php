@@ -37,7 +37,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         ->get();
 
     $materis = DB::table('class')
-        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
         ->get();
     return view('dashboard', compact('mentors', 'materis'));
 })->name('dashboard');
@@ -45,6 +44,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:murid', 'prefix' => 'murid', 'as' => 'murid.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
+        Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
+        Route::get('/recommendmentor', [MuridController::class, 'recommend']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
