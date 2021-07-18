@@ -19,7 +19,6 @@ class BerandaController extends Controller
             ->get();
 
         $materis = DB::table('class')
-            ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
             ->get();
 
         return view('index', compact('mentors', 'materis'));

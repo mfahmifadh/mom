@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\MentorData;
 use App\Models\ClassData;
 use Illuminate\Support\Facades\Schema;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class MentorController extends Controller
 {

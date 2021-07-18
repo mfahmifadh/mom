@@ -146,7 +146,7 @@
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Cari Mentor,<br>Sesuai Kebutuhan Mu</h1>
       <h2>Belajar hal-hal yang kamu suka mulai dari<br> pelajaran umum, menari, musik, hingga membuat kopi.</h2>
-      <a href="courses.html" class="btn-get-started">Yuk Mulai!</a>
+      <a href="murid/recommendmentor" class="btn-get-started">Aktifkan Rekomendasi Mentor</a>
     </div>
   </section><!-- End Hero -->
 
@@ -367,7 +367,7 @@
                   <p class="price">Rp.{{$materi->class_cost}}</p>
                 </div>
 
-                <h3><a href="materidetail/{{$materi->id}}">{{$materi->class_name}}</a></h3>
+                <h3><a href="murid/dashboardmateri/{{$materi->id}}">{{$materi->class_name}}</a></h3>
                 <p>{{$materi->class_description}}</p>
                 {{-- <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
