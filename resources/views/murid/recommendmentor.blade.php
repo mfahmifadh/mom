@@ -87,11 +87,9 @@ text-align:center;
                             <br>
                             <select name='prioritas' class="form-control">
                                 <option value="">--- Pilih Prioritas Pertama ---</option>
-                                <option value='islam'>Islam</option>
-                                <option value='kristen'>Kristen</option>
-                                <option value='katholik'>Katholik</option>
-                                <option value='hindu'>Hindu</option>
-                                <option value='kristen'>Budha</option>
+                                @foreach($category as $data)
+                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                @endforeach
                               </select>
                         </div>
                         <div class="form-group">
@@ -101,11 +99,9 @@ text-align:center;
                             <br>
                             <select name='prioritas' class="form-control">
                                 <option value="">--- Pilih Prioritas Kedua ---</option>
-                                <option value='islam'>Islam</option>
-                                <option value='kristen'>Kristen</option>
-                                <option value='katholik'>Katholik</option>
-                                <option value='hindu'>Hindu</option>
-                                <option value='kristen'>Budha</option>
+                                @foreach($category as $data)
+                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                @endforeach
                               </select>
                         </div>
                         <div class="form-group">
@@ -115,11 +111,9 @@ text-align:center;
                             <br>
                             <select name='prioritas' class="form-control">
                                 <option value="">--- Pilih Prioritas Ketiga ---</option>
-                                <option value='islam'>Islam</option>
-                                <option value='kristen'>Kristen</option>
-                                <option value='katholik'>Katholik</option>
-                                <option value='hindu'>Hindu</option>
-                                <option value='kristen'>Budha</option>
+                                @foreach($category as $data)
+                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                @endforeach
                               </select>
                         </div>
                         <br>
