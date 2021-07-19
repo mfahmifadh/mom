@@ -37,7 +37,10 @@ class MuridController extends Controller
 
     public function recommend()
     {
-        return view('murid.recommendmentor');
+        $qry = DB::table('class')
+            ->select('course_category')
+            ->distinct()->get();
+        return view('murid.recommendmentor', ['category' => $qry]);
     }
 
     /**
