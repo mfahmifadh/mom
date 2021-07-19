@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\MuridController;
 use App\Http\Controllers\recommendationController;
 use Illuminate\Support\Facades\DB;
 
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
+        Route::post('/add_priority', [MuridController::class, 'addPriority']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);

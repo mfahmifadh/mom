@@ -110,6 +110,6 @@ class recommendationController extends Controller
             // return view('recommendation', ['data' => $rp1]);
             
         }
-        
+        return redirect('dashboard');
     }
 }
