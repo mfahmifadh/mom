@@ -37,7 +37,7 @@ class MentorController extends Controller
 
     public function addCourses()
     {
-        $class_category = DB::table("course_class_category")->get();
+        $class_category = DB::table("class_category")->get();
         return view('mentor.add_courses', compact('class_category'));
     }
 
@@ -113,7 +113,7 @@ class MentorController extends Controller
 
     public function courseCategory($id)
     {
-        $course_category = DB::table("course_category")->where("course_class_category_id", $id)->pluck("name", "id");
+        $course_category = DB::table("course_category")->where("id", $id)->pluck("name", "id");
         return json_code($course_category);
     }
 
@@ -137,7 +137,7 @@ class MentorController extends Controller
             )
             ->where('class.id', $id)
             ->get();
-        $class_category = DB::table("course_class_category")->get();
+        $class_category = DB::table("class_category")->get();
         return view('mentor/edit_page_course', compact('class', 'class_category'));
     }
 
