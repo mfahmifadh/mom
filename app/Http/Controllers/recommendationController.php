@@ -10,19 +10,26 @@ class recommendationController extends Controller
     {
         $this->middleware('auth');
     }
+    public function getMax()
+    {
+        $maxP1 = DB::table('recommendation_mentor_alternative_value')->max('p1');
+        $maxP2 = DB::table('recommendation_mentor_alternative_value')->max('p2');
+        $maxP3 = DB::table('recommendation_mentor_alternative_value')->max('p3');
+    }
 
     public function recommendation()
     {   
         $id = Auth::id(); 
        
-        $checkV = DB::table('recommendation_mentor_alternative_value')->count();
-        $checkR = DB::table('recommendation_mentor_alternative_result')->count();
+        // $checkV = DB::table('recommendation_mentor_alternative_value')->count();
+        // $checkR = DB::table('recommendation_mentor_alternative_result')->count();
         
-        if ($checkV != 0) {
-            $maxP1 = DB::table('recommendation_mentor_alternative_value')->max('p1');
-            $maxP2 = DB::table('recommendation_mentor_alternative_value')->max('p2');
-            $maxP3 = DB::table('recommendation_mentor_alternative_value')->max('p3');
-        }
+       
+        // if ($checkV != 0) {
+        //     $maxP1 = DB::table('recommendation_mentor_alternative_value')->max('p1');
+        //     $maxP2 = DB::table('recommendation_mentor_alternative_value')->max('p2');
+        //     $maxP3 = DB::table('recommendation_mentor_alternative_value')->max('p3');
+        // }
         $get_mentor = DB::table('users')
         ->select('id')
         ->where('role_id', '=', 3)
@@ -52,27 +59,37 @@ class recommendationController extends Controller
             $p1 = $dp1;
             $p2 = $dp2;
             $p3 = $dp3;
-            $wp1 = $dp1/$maxP1;
-            $wp2 = $dp2/$maxP2;
-            $wp3 = $dp3/$maxP3;
-           
-            if ($checkV = 0) {
-            $data=array('p1'=>$p1,"p2"=>$p2,"p3"=>$p3,"user_id"=>$item->id);
-            DB::table('recommendation_mentor_alternative_value')->insert($data);
-            } 
-
-            if($checkR != 0){
-            DB::table('recommendation_mentor_alternative_result')-> where('user_id' , '=', $item->id)->update(['p1' => $wp1,'p2' => $wp2,'p3' => $wp3]);
+            
+            
+            $checkV = DB::table('recommendation_mentor_alternative_value')->where('user_id','=',$item->id)->count();
+            if ($checkV == 0) {
+                $data=array('p1'=>$p1,"p2"=>$p2,"p3"=>$p3,"user_id"=>$item->id);
+                DB::table('recommendation_mentor_alternative_value')->insert($data);
             }
+            else if ($checkV != 0) {
+                DB::table('recommendation_mentor_alternative_value')-> where('user_id' , '=', $item->id)->update(['p1' => $p1,'p2' => $p2,'p3' => $p3]);
+            }
+        }
 
+        $sumP1 = DB::table('recommendation_mentor_alternative_value')->sum('p1');
+        $sumP2 = DB::table('recommendation_mentor_alternative_value')->sum('p2');
+        $sumP3 = DB::table('recommendation_mentor_alternative_value')->sum('p3');
+
+        $getMentorValue = DB::table('recommendation_mentor_alternative_value')->get();
+        foreach($getMentorValue as $item){
+            $wp1 = $item->p1/$sumP1;
+            $wp2 = $item->p2/$sumP2;
+            $wp3 = $item->p3/$sumP3;
+            $checkR = DB::table('recommendation_mentor_alternative_result')->where('user_id' , '=', $item->user_id)->count();            
+            
+            if($checkR != 0){
+            DB::table('recommendation_mentor_alternative_result')-> where('user_id' , '=', $item->user_id)->update(['p1' => $wp1,'p2' => $wp2,'p3' => $wp3]);
+            }
             else{
-            DB::table('recommendation_mentor_alternative_value')-> where('user_id' , '=', $item->id)->update(['p1' => $p1,'p2' => $p2,'p3' => $p3]);
-            $data=array('p1'=>$wp1,"p2"=>$wp2,"p3"=>$wp3,"user_id"=>$item->id);
+            // DB::table('recommendation_mentor_alternative_value')-> where('user_id' , '=', $item->id)->update(['p1' => $p1,'p2' => $p2,'p3' => $p3]);
+            $data=array('p1'=>$wp1,"p2"=>$wp2,"p3"=>$wp3,"user_id"=>$item->user_id);
             DB::table('recommendation_mentor_alternative_result')->insert($data);
             }
-
-            
-            
         }
         $get_criterion_weight = DB::table('recommendation_criterion_weight') ->first();
         $get_result = DB::table('recommendation_mentor_alternative_result')->get();
@@ -81,8 +98,15 @@ class recommendationController extends Controller
             $rp2 = $get_criterion_weight->p2*$r->p2;
             $rp3 = $get_criterion_weight->p3*$r->p3;
             $result = $rp1 + $rp2 + $rp3;
+            // return view('recommendation' , ['data'=>$result]);
             $data=array('result'=>$result,'user_id'=>$r->user_id);
-            DB::table('recommendation_mentor_result')->insert($data);
+            $checkR = DB::table('recommendation_mentor_result')->where('user_id' , '=', $r->user_id)->count();
+            if($checkR == 0){
+                DB::table('recommendation_mentor_result')->insert($data);
+            }
+            else{
+                DB::table('recommendation_mentor_result')-> where('user_id' , '=', $r->user_id)->update(['result' => $result]);
+            }
             // return view('recommendation', ['data' => $rp1]);
             
         }

@@ -18,6 +18,12 @@ class MuridController extends Controller
         return view('murid.index');
     }
 
+    public function getPriority()
+    {
+        $priority = DB::table('class')->select('course_category')->get();
+        return view('recommendation', ['data' =>$priority]);
+    }
+
     public function Detail($id)
     {
         $qry = DB::table('class')

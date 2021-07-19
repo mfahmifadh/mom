@@ -27,6 +27,9 @@ Route::get('/indexmateri', [BerandaController::class, 'showMateri']);
 Route::get('materidetail/{id_materi}', [BerandaController::class, 'showDetail']);
 
 Route::get('/recommendation', [recommendationController::class, 'recommendation']);
+Route::get('/tesUas', function(){
+    return 'tes';
+});
 Route::get('/admin/verifikasi-mentor', '\App\Http\Controllers\AdminController@verifikasi');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
