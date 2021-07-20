@@ -76,7 +76,8 @@ text-align:center;
             <div class="contact-image">
                 <img src="{{ url('assets/img/momLogo.png')}}" alt="momLogo"/>
             </div>
-            <form method="post">
+            <form method="post" action="{{ url('murid/add_priority')}}">
+                @csrf
                 <h3>Rekomendasi Mentor</h3>
                <div class="row d-flex justify-content-center">
                     <div class="col-9">
@@ -85,7 +86,7 @@ text-align:center;
                                 <h6 class="mb-0 text-sm">Materi Prioritas Pertama</h6>
                             </label>
                             <br>
-                            <select name='prioritas' class="form-control">
+                            <select name='p1' class="form-control">
                                 <option value="">--- Pilih Prioritas Pertama ---</option>
                                 @foreach($category as $data)
                                 <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
@@ -97,7 +98,7 @@ text-align:center;
                                 <h6 class="mb-0 text-sm">Materi Prioritas Kedua</h6>
                             </label>
                             <br>
-                            <select name='prioritas' class="form-control">
+                            <select name='p2' class="form-control">
                                 <option value="">--- Pilih Prioritas Kedua ---</option>
                                 @foreach($category as $data)
                                 <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
@@ -109,7 +110,7 @@ text-align:center;
                                 <h6 class="mb-0 text-sm">Materi Prioritas Ketiga </h6>
                             </label>
                             <br>
-                            <select name='prioritas' class="form-control">
+                            <select name='p3' class="form-control">
                                 <option value="">--- Pilih Prioritas Ketiga ---</option>
                                 @foreach($category as $data)
                                 <option value='{{$data->course_category}}'>{{$data->course_category}}</option>

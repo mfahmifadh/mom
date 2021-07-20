@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\MuridController;
+use App\Http\Controllers\recommendationController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -26,7 +27,10 @@ Route::get('/indexmentor', [BerandaController::class, 'showMentor']);
 Route::get('/indexmateri', [BerandaController::class, 'showMateri']);
 Route::get('materidetail/{id_materi}', [BerandaController::class, 'showDetail']);
 
-
+Route::get('/recommendation', [recommendationController::class, 'recommendation']);
+Route::get('/tesUas', function () {
+    return 'tes';
+});
 Route::get('/admin/verifikasi-mentor', '\App\Http\Controllers\AdminController@verifikasi');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -47,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
         Route::get('/checkout/{id_materi}', [MuridController::class, 'checkout']);
+        Route::post('/add_priority', [MuridController::class, 'addPriority']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
