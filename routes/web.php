@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
+        Route::get('/checkout/{id_materi}', [MuridController::class, 'checkout']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
