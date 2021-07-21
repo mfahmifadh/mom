@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
         Route::get('/course/{id}', [MentorController::class, 'GetCourse']);
+        Route::get('/income', [MentorController::class, 'GetIncome']);
         Route::get('/addCourses', [MentorController::class, 'addCourses']);
         Route::get('/mentor_page/{id}', [MentorController::class, 'check_mentor']);
         Route::get('/detailCourse/{id}', [MentorController::class, 'GetDetailCourse']);

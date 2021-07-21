@@ -252,30 +252,30 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
                   <p>
                     Jadwal
                   </p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('mentor/income/') }}" class="nav-link">
                   <i class="nav-icon fas fa-wallet"></i>
                   <p>
                     Pendapatan
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-cog"></i>
                   <p>
                     Profil
                   </p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <form method="POST" action="{{ route('logout') }}">
                 @csrf

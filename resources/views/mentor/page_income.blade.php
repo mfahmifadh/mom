@@ -3,15 +3,10 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-              <a href="{{ url('mentor/addCourses') }}" class="btn btn-app">
-                <i class="fas fa-plus-square"></i> Kelas Baru
-              </a>
-          </div>
-          <div class="col-sm-6">
+          <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Kelas</li>
+              <li class="breadcrumb-item active">Pendapatan</li>
             </ol>
           </div>
         </div>
@@ -26,7 +21,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Daftar Kelas</h3>
+                <h3 class="card-title">Pendapatan</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -34,51 +29,42 @@
                   <thead>
                   <tr>
                     <th>Kode</th>
-                    <th>Tingkat</th>
-                    <th>Kategori Materi</th>
+                    <th>Kode Boking</th>
+                    <th>Nama Murid</th>
                     <th>Kelas</th>
-                    <th>Kategori Kelas</th>
-                    <th>Max. Murid</th>
-                    <th>Jadwal</th>
-                    <th>Biaya</th>
-                    <th>Aksi</th>
+                    <th>Jumlah Pertemuan</th>
+                    <th>Tgl. Pembayaran</th>
+                    <th>Total Pembayaran</th>
+                    <th>Status Pembayaran</th>
+                    <th>Status Transaksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach($course as $data)
+                    @foreach($income as $data)
                     <tr>
                       <td>{{ $data->id }}</td>
-                      <td>{{ $data->name }}</td>
-                      <td>{{ $data->course_category }}</td>
+                      <td>{{ $data->booking_id }}</td>
+                      <td>{{ $data->student_name }}</td>
                       <td>{{ $data->class_name }}</td>
-                      <td>{{ $data->class_status }}</td>
-                      <td>{{ $data->class_member_max }} Orang</td>
-                      <td>{{ $data->class_time_perday }} /Hari - {{ $data->class_permonth }} /Bulan</td>
-                      <td>{{ $data->class_cost }}</td>
-                      <td>
-                        
-                        <form action="{{ url('mentor/deleteCourse', ['id' => $data->id ]) }}" method="post">
-                          {{ csrf_field() }}
-                          {{ method_field('delete') }}
-                          <a type="button" class="fas fa-info-circle" data-toggle="modal" data-target="#modal-lg"></a>
-                          <a href="{{ url('mentor/editCourse', ['id' => $data->id ]) }}" class="fas fa-edit"></a>
-                          <button onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-trash-alt"></i></button>
-                        </form>
-                      </td>
+                      <td>{{ $data->class_permonth}} /Bulan</td>
+                      <td>{{ $data->transaction_date }}</td>
+                      <td>Rp {{ $data->total_payment }}</td>
+                      <td><b>{{ $data->payment_status }}</b></td>
+                      <td><b>{{ $data->transaction_status }}</b></td>
                     </tr>
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
                     <th>Kode</th>
-                    <th>Tingkat</th>
-                    <th>Kategori Materi</th>
+                    <th>Kode Boking</th>
+                    <th>Nama Murid</th>
                     <th>Kelas</th>
-                    <th>Kategori Kelas</th>
-                    <th>Max. Murid</th>
-                    <th>Jadwal</th>
-                    <th>Biaya</th>
-                    <th>Aksi</th>
+                    <th>Jumlah Pertemuan</th>
+                    <th>Tgl. Pembayaran</th>
+                    <th>Total Pembayaran</th>
+                    <th>Status Pembayaran</th>
+                    <th>Status Transaksi</th>
                   </tr>
                   </tfoot>
                 </table>

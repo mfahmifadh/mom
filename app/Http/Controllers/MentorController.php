@@ -9,6 +9,7 @@ use App\Models\MentorData;
 use App\Models\ClassData;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MentorController extends Controller
 {
@@ -60,6 +61,32 @@ class MentorController extends Controller
             ->get();
 
         return view('mentor.page_course', compact('course'));
+    }
+
+    public function GetIncome()
+    {
+        $id = Auth::id();
+        $income = DB::table("cost")
+            ->where('cost.mentor_id', $id)
+            ->join('users', 'cost.murid_id', '=', 'users.id')
+            ->join('booking', 'cost.booking_id', '=', 'booking.id')
+            ->join('class', 'booking.class_id', '=', 'class.id')
+            ->select(
+                'cost.id',
+                'cost.booking_id',
+                'cost.transaction_date',
+                'cost.total_payment',
+                'cost.payment_status',
+                'cost.transaction_status',
+                'users.name as student_name',
+                'users.email',
+                'class.class_name',
+                'class.class_time_perday',
+                'class.class_permonth',
+            )
+            ->get();
+
+        return view('mentor.page_income', compact('income'));
     }
 
     /**
@@ -154,10 +181,6 @@ class MentorController extends Controller
         $class->class_permonth      = $request->get('class_permonth');
         $class->class_cost          = $request->get('class_cost');
         $class->class_status        = $request->get('class_status');
-
-        if (file_exists(public_path() . '/img/course/' . $class->class_photo)) {
-            unlink(public_path() . '/img/course/' . $class->class_photo);
-        }
 
         $file = $request->file('class_photo');
         $extension = $file->getClientOriginalExtension();
