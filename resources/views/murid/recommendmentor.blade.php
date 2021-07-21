@@ -1,127 +1,142 @@
-<style>
-    body{
-    background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
-}
-.contact-form{
-    background: #fff;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    width: 70%;
-}
-.contact-form .form-control{
-    border-radius:1rem;
-}
-.contact-image{
-    text-align: center;
-}
-.contact-image img{
-    border-radius: 6rem;
-    width: 11%;
-    margin-top: 0%;
-}
-.contact-form form{
-    padding: 14%;
-}
-.contact-form form .row{
-    margin-bottom: -7%;
-}
-.contact-form h3{
-    margin-bottom: 8%;
-    margin-top: -15%;
-    text-align: center;
-    color: #0062cc;
-}
-.contact-form .btnContact {
-    width: 40%;
-    border: none;
-    border-radius: 1rem;
-    padding: 1.5%;
-    background: #dc3545;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-}
-.btnContactSubmit
-{
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    color: #fff;
-    background-color: #0062cc;
-    border: none;
-    cursor: pointer;
-}
+<x-app-layout>
 
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+   <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex justify-content-center align-items-center">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-md-4" style="margin-left:-5vh;">
+            <img src="{{ url('assets/img/momLogo.png')}}" class="img-fluid" style="width:50%;" alt="momLogo"/>
+        </div>
+        <h1>Cari Mentor,<br>Sesuai Kebutuhan Mu</h1>
+        <h2 style="line-height:3vh;">Belajar hal-hal yang kamu suka mulai dari<br> pelajaran umum, menari, musik, hingga membuat kopi.</h2>
+        
+        </div>
+    </section><!-- End Hero -->
 
-.row-centered {
-text-align:center;
-}
-</style>
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
 
+        <div class="row counters">
 
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1232</span>
+            <p>Murid</p>
+          </div>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">60</span>
+            <p>Materi</p>
+          </div>
 
-<div class="container contact-form">
-            <div class="contact-image">
-                <img src="{{ url('assets/img/momLogo.png')}}" alt="momLogo"/>
-            </div>
-            <form method="post" action="{{ url('murid/add_priority')}}">
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">10</span>
+            <p>Seminar</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">30</span>
+            <p>Mentor</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <div class="container" style="margin-top:5vh;">
+        <div class="section-title">
+          <h2>Mentor Terbaik</h2>
+          <p>Rekomendasi Mentor</p>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <form method="post" action="{{ url('murid/add_priority')}}">
                 @csrf
-                <h3>Rekomendasi Mentor</h3>
-               <div class="row d-flex justify-content-center">
-                    <div class="col-9">
-                        <div class="form-group">
-                            <label class="mb-1">
-                                <h6 class="mb-0 text-sm">Materi Prioritas Pertama</h6>
-                            </label>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Materi Prioritas Pertama</h6>
+                                </label>
+                                <br>
+                                <select name='p1' class="form-control" required>
+                                    <option value="">--- Pilih Prioritas Pertama ---</option>
+                                    @foreach($category as $data)
+                                    <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Materi Prioritas Kedua</h6>
+                                </label>
+                                <br>
+                                <select name='p2' class="form-control" required>
+                                    <option value="">--- Pilih Prioritas Kedua ---</option>
+                                    @foreach($category as $data)
+                                    <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Materi Prioritas Ketiga </h6>
+                                </label>
+                                <br>
+                                <select name='p3' class="form-control" required>
+                                    <option value="">--- Pilih Prioritas Ketiga ---</option>
+                                    @foreach($category as $data)
+                                    <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
                             <br>
-                            <select name='p1' class="form-control">
-                                <option value="">--- Pilih Prioritas Pertama ---</option>
-                                @foreach($category as $data)
-                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
-                                @endforeach
-                              </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1">
-                                <h6 class="mb-0 text-sm">Materi Prioritas Kedua</h6>
-                            </label>
-                            <br>
-                            <select name='p2' class="form-control">
-                                <option value="">--- Pilih Prioritas Kedua ---</option>
-                                @foreach($category as $data)
-                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
-                                @endforeach
-                              </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1">
-                                <h6 class="mb-0 text-sm">Materi Prioritas Ketiga </h6>
-                            </label>
-                            <br>
-                            <select name='p3' class="form-control">
-                                <option value="">--- Pilih Prioritas Ketiga ---</option>
-                                @foreach($category as $data)
-                                <option value='{{$data->course_category}}'>{{$data->course_category}}</option>
-                                @endforeach
-                              </select>
-                        </div>
-                        <br>
-                        <div class="form-group text-center">
-                            <input type="submit" name="btnSubmit" class="btnContact " value="Simpan" />
+                            <div class="form-group text-center">
+                                <input type="submit" name="btnSubmit" class="btn btn-primary col-md-12" value="Cari" />
+                            </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Mentor</h2>
+          <p>Mentor Pilihan</p>
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        @foreach($mentor->take(3) as $data)
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{{ url('assets/img/trainers/'.$data->profile_photo_path) }}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>{{$data->name}}</h4>
+                {{-- <span>Web Development</span> --}}
+                <p>
+                  <b>Nilai : {{ ($data->result * 100) + 30 }}</b>
+                </p>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
                 </div>
-            </form>
-</div>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+</x-app-layout>

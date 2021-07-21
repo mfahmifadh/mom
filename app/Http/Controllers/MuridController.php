@@ -52,75 +52,25 @@ class MuridController extends Controller
 
     public function recommend()
     {
+        $id = Auth::id();
         $qry = DB::table('class')
             ->select('course_category')
             ->distinct()->get();
-        return view('murid.recommendmentor', ['category' => $qry]);
+        $mentor = DB::table('users')-> select('users.*', 'recommendation_mentor_result.*')
+            ->where('recommendation_mentor_result.murid_id', $id)
+            ->join('recommendation_mentor_result', 'recommendation_mentor_result.mentor_id', '=', 'users.id')
+            ->orderby('recommendation_mentor_result.result', 'DESC')
+            ->get();
+        return view('murid.recommendmentor', ['category' => $qry, 'mentor' => $mentor]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function GetClass(){
+        $class = DB::table('class')
+        ->join('users AS user', 'class.user_id', '=', 'user.id')
+        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+        ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 
+                 'class.class_description', 'class.class_photo', 'class.class_member_max')
+        ->get();
+        return view('murid.page_class', ['materis' => $class]);
     }
 }

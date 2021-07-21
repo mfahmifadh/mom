@@ -96,6 +96,6 @@ class recommendationController extends Controller
                 DB::table('recommendation_mentor_result')-> where('mentor_id' , '=', $r->mentor_id)->where('murid_id' ,'=', $id)->update(['result' => $result]);
             }
         }
-        return redirect('dashboard');
+        return redirect('murid/recommendmentor');
     }
 }

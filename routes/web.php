@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MuridController::class);
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
+        Route::get('/class',[MuridController::class, 'GetClass']);
         Route::post('/add_priority', [MuridController::class, 'addPriority']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
