@@ -193,7 +193,7 @@
                     <p>{{$item->class_permonth}}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center text-center">
-                   <a href="" class="btn btn-primary">Booking</a>
+                   <a href="{{url('murid/checkout')}}/{{$item->id}}" class="btn btn-primary">Booking</a>
                   </div>
                   @endforeach
                 </div>

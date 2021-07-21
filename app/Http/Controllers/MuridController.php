@@ -45,7 +45,7 @@ class MuridController extends Controller
             ->where('class.id', $id)
             ->join('users AS user', 'class.user_id', '=', 'user.id')
             ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
-            ->select('class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
+            ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
             ->get();
         return view('murid.dashboardmateri', ['materi' => $qry]);
     }
@@ -64,6 +64,16 @@ class MuridController extends Controller
         return view('murid.recommendmentor', ['category' => $qry, 'mentor' => $mentor]);
     }
 
+    public function checkout($id)
+    {
+        $qry = DB::table('class')
+            ->where('class.id', $id)
+            ->join('users AS user', 'class.user_id', '=', 'user.id')
+            ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+            ->select('class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max', 'class.class_time_perday')
+            ->get();
+        return view('murid.checkout', ['materis' => $qry]);
+    }
     public function GetClass(){
         $class = DB::table('class')
         ->join('users AS user', 'class.user_id', '=', 'user.id')
