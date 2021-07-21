@@ -1,12 +1,17 @@
-<x-mentor-layout>
+<x-admin-layout>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+              <a href="{{ url('mentor/addCourses') }}" class="btn btn-app">
+                <i class="fas fa-plus-square"></i> Kelas Baru
+              </a>
+          </div>
+          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pendapatan</li>
+              <li class="breadcrumb-item active">DataTables</li>
             </ol>
           </div>
         </div>
@@ -21,53 +26,55 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Pendapatan</h3>
+                <h3 class="card-title">DataTable with default features</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Kode</th>
+                    {{-- <th>Kode</th> --}}
                     <th>Kode Boking</th>
                     <th>Nama Murid</th>
-                    <th>Telepon</th>
                     <th>Kelas</th>
                     <th>Jumlah Pertemuan</th>
                     <th>Tgl. Pembayaran</th>
                     <th>Total Pembayaran</th>
                     <th>Status Pembayaran</th>
                     <th>Status Transaksi</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
                     @foreach($income as $data)
                     <tr>
-                      <td>{{ $data->id }}</td>
+                      {{-- <td>{{ $data->id }}</td> --}}
                       <td>{{ $data->booking_id }}</td>
                       <td>{{ $data->student_name }}</td>
-                      <td>{{ $data->phone_number }}</td>
                       <td>{{ $data->class_name }}</td>
                       <td>{{ $data->class_permonth}} /Bulan</td>
                       <td>{{ $data->transaction_date }}</td>
                       <td>Rp {{ $data->total_payment }}</td>
                       <td><b>{{ $data->payment_status }}</b></td>
                       <td><b>{{ $data->transaction_status }}</b></td>
+                      <td>
+                          <a href="{{ url('admin/editTransaction', ['id' => $data->id ]) }}" class="fas fa-check"></a>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Kode</th>
+                    {{-- <th>Kode</th> --}}
                     <th>Kode Boking</th>
                     <th>Nama Murid</th>
-                    <th>Telepon</th>
                     <th>Kelas</th>
                     <th>Jumlah Pertemuan</th>
                     <th>Tgl. Pembayaran</th>
                     <th>Total Pembayaran</th>
                     <th>Status Pembayaran</th>
                     <th>Status Transaksi</th>
+                    <th>Aksi</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -106,4 +113,4 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-</x-mentor-layout>
+</x-admin-layout>

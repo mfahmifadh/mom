@@ -5,6 +5,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\MuridController;
 use App\Http\Controllers\recommendationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -51,9 +52,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
         Route::get('/class', [MuridController::class, 'GetClass']);
+        Route::get('/confirm_checkout', function () {
+            return view('murid/confirm_checkout');
+        });
         Route::get('/checkout/{id_materi}', [MuridController::class, 'checkout']);
+        Route::get('/getTransaction', [MentorController::class, 'getTransaction']);
         Route::post('/add_priority', [MuridController::class, 'addPriority']);
         Route::get('/mentordetail/{id_mentor}', [MuridController::class, 'mentorDetail']);
+        Route::post('/postBooking', [MuridController::class, 'Booking']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\MentorController::class);
@@ -73,5 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\AdminController::class);
+        Route::get('/transaction', [AdminController::class, 'transaction']);
+        Route::get('/editTransaction/{id}', [AdminController::class, 'editTransaction']);
     });
 });

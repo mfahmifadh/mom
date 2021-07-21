@@ -80,6 +80,7 @@ class MentorController extends Controller
                 'cost.transaction_status',
                 'users.name as student_name',
                 'users.email',
+                'users.phone_number',
                 'class.class_name',
                 'class.class_time_perday',
                 'class.class_permonth',
