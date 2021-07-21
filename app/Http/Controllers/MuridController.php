@@ -28,13 +28,13 @@ class MuridController extends Controller
         $p1 = $request->input('p1');
         $p2 = $request->input('p2');
         $p3 = $request->input('p3');
-        $id = Auth::id(); 
-        $data=array('p1'=>$p1,"p2"=>$p2,"p3"=>$p3,"user_id"=>$id);
-        $check = DB::table('recommendation_priority')->where('user_id','=',$id)->count();
-        if($check==0){
+        $id = Auth::id();
+        $data = array('p1' => $p1, "p2" => $p2, "p3" => $p3, "user_id" => $id);
+        $check = DB::table('recommendation_priority')->where('user_id', '=', $id)->count();
+        if ($check == 0) {
             DB::table('recommendation_priority')->insert($data);
-        }else{
-            DB::table('recommendation_priority')-> where('user_id' , '=', $id)->update(['p1' => $p1,'p2' => $p2,'p3' => $p3]);
+        } else {
+            DB::table('recommendation_priority')->where('user_id', '=', $id)->update(['p1' => $p1, 'p2' => $p2, 'p3' => $p3]);
         }
         return redirect('recommendation');
     }
@@ -47,7 +47,7 @@ class MuridController extends Controller
             ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
             ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
             ->get();
-        return view('murid.dashboardmateri', ['materi' => $qry]);
+        return view('murid.materidetails', ['materi' => $qry]);
     }
 
     public function recommend()
@@ -56,7 +56,7 @@ class MuridController extends Controller
         $qry = DB::table('class')
             ->select('course_category')
             ->distinct()->get();
-        $mentor = DB::table('users')-> select('users.*', 'recommendation_mentor_result.*')
+        $mentor = DB::table('users')->select('users.*', 'recommendation_mentor_result.*')
             ->where('recommendation_mentor_result.murid_id', $id)
             ->join('recommendation_mentor_result', 'recommendation_mentor_result.mentor_id', '=', 'users.id')
             ->orderby('recommendation_mentor_result.result', 'DESC')
@@ -74,13 +74,24 @@ class MuridController extends Controller
             ->get();
         return view('murid.checkout', ['materis' => $qry]);
     }
-    public function GetClass(){
+    public function GetClass()
+    {
         $class = DB::table('class')
-        ->join('users AS user', 'class.user_id', '=', 'user.id')
-        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
-        ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 
-                 'class.class_description', 'class.class_photo', 'class.class_member_max')
-        ->get();
+            ->join('users AS user', 'class.user_id', '=', 'user.id')
+            ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+            ->select(
+                'class.id',
+                'class.class_name',
+                'class.course_category',
+                'class.class_cost',
+                'class_category.name',
+                'user.name AS mentor',
+                'class.class_permonth',
+                'class.class_description',
+                'class.class_photo',
+                'class.class_member_max'
+            )
+            ->get();
         return view('murid.page_class', ['materis' => $class]);
     }
 }
