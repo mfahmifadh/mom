@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Booking;
+use App\Models\Transaction;
 
 class MuridController extends Controller
 {
@@ -70,7 +72,8 @@ class MuridController extends Controller
             ->where('class.id', $id)
             ->join('users AS user', 'class.user_id', '=', 'user.id')
             ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
-            ->select('class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max', 'class.class_time_perday')
+            ->select('class.id as class_id','class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 
+                     'class.user_id as mentor_id','class.class_description', 'class.class_photo', 'class.class_member_max', 'class.class_time_perday')
             ->get();
         return view('murid.checkout', ['materis' => $qry]);
     }
@@ -93,5 +96,45 @@ class MuridController extends Controller
             )
             ->get();
         return view('murid.page_class', ['materis' => $class]);
+    }
+
+    public function Booking(Request $request)
+    {
+        $id = Auth::id();
+        $booking_class                   = new Booking();
+        $booking_class->murid_id         = $id;
+        $booking_class->class_id         = $request->input('class_id');
+        $booking_class->class_progress   = $request->input('class_progress');
+        $booking_class->class_status     = $request->input('class_status');
+        $booking_class->save();
+
+        $getBooking = DB::table('booking')->orderby('id','DESC')->first();
+
+        $transaction                     = new Transaction();
+        $transaction->murid_id           = $id;
+        $transaction->mentor_id          = $request->input('mentor_id');
+        $transaction->booking_id         = $getBooking->id;
+        $transaction->total_payment      = $request->input('total_payment');
+        $transaction->payment_status     = $request->input('payment_status');
+        $transaction->transaction_status = $request->input('transaction_status');
+
+        if ($request->hasfile('receipt')) {
+            $file = $request->file('receipt');
+            $extension = $file->getClientOriginalExtension();
+            $receipt = time() . '.' . $extension;
+            $file->move('img/receipt/', $receipt);
+            $transaction->receipt = $receipt;
+        } else {
+            return $request;
+            $transaction->image = '';
+        }
+
+        $transaction->save();
+        return view('murid.confirm_checkout')->with('alert-success', 'Berhasil Menambah Data!');
+    }
+
+    public function GetTransaction()
+    {
+        
     }
 }
