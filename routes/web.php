@@ -5,6 +5,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\MuridController;
 use App\Http\Controllers\recommendationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -71,5 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('dashboard', \App\Http\Controllers\AdminController::class);
+        Route::get('/transaction', [AdminController::class, 'transaction']);
+        Route::get('/editTransaction/{id}', [AdminController::class, 'editTransaction']);
     });
 });
