@@ -321,7 +321,7 @@
             <div class="member">
               <img src="{{ url('assets/img/trainers/'.$mentor->profile_photo_path) }}" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>{{$mentor->name}}</h4>
+                <h4><a href="murid/mentordetail/{{$mentor->user_id}}">{{$mentor->name}}</a></h4>
                 {{-- <span>Web Development</span> --}}
                 <p>
                   {{$mentor->about}}
