@@ -236,8 +236,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                   with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open">
-                <a href="{{ url('mentor/dashboard') }}" class="nav-link active">
+              <li class="nav-item ">
+                <a href="{{ url('mentor/dashboard') }}" class="nav-link {{ Request::is('mentor/dashboard') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -245,7 +245,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('mentor/course/'. Auth::user()->id) }}" class="nav-link">
+                <a href="{{ url('mentor/course'. Auth::user()->id) }}" class="nav-link {{ Request::is('mentor/course') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-chalkboard-teacher"></i>
                   <p>
                     Kelas
@@ -261,7 +261,7 @@
                 </a>
               </li> -->
               <li class="nav-item">
-                <a href="{{ url('mentor/income/') }}" class="nav-link">
+                <a href="{{ url('mentor/income') }}" class="nav-link {{ Request::is('mentor/income') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-wallet"></i>
                   <p>
                     Pendapatan

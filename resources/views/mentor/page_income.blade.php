@@ -31,6 +31,7 @@
                     <th>Kode</th>
                     <th>Kode Boking</th>
                     <th>Nama Murid</th>
+                    <th>Telepon</th>
                     <th>Kelas</th>
                     <th>Jumlah Pertemuan</th>
                     <th>Tgl. Pembayaran</th>
@@ -45,6 +46,7 @@
                       <td>{{ $data->id }}</td>
                       <td>{{ $data->booking_id }}</td>
                       <td>{{ $data->student_name }}</td>
+                      <td>{{ $data->phone_number }}</td>
                       <td>{{ $data->class_name }}</td>
                       <td>{{ $data->class_permonth}} /Bulan</td>
                       <td>{{ $data->transaction_date }}</td>
@@ -59,6 +61,7 @@
                     <th>Kode</th>
                     <th>Kode Boking</th>
                     <th>Nama Murid</th>
+                    <th>Telepon</th>
                     <th>Kelas</th>
                     <th>Jumlah Pertemuan</th>
                     <th>Tgl. Pembayaran</th>
