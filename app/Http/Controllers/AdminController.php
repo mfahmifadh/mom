@@ -74,7 +74,7 @@ class AdminController extends Controller
             )
             ->get();
         DB::table('cost')-> where('id', $id)->update(['transaction_status' => 'Approve']);
-        return view('admin.transaction',['income' => $income]);
+        return redirect('admin/transaction');
     }
 
 

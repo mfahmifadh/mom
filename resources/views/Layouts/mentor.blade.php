@@ -245,6 +245,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ url('mentor/booking/') }}" class="nav-link {{ Request::is('mentor/bookinf') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-database"></i>
+                  <p>
+                    Booking
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ url('mentor/course/'. Auth::user()->id) }}" class="nav-link {{ Request::is('mentor/course') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-chalkboard-teacher"></i>
                   <p>
