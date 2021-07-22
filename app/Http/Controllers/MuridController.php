@@ -110,6 +110,16 @@ class MuridController extends Controller
         return view('murid.page_class', ['materis' => $class]);
     }
 
+    public function getMentor()
+    {
+        $mentor = DB::table('users')
+            ->where('users.role_id', '=', '3')
+            ->join('mentor_data', 'users.id', '=', 'mentor_data.user_id')
+            ->where('mentor_data.status_account', '=', '2')
+            ->get();
+        return view('murid.page_mentor', ['mentors' => $mentor]);
+    }
+
     public function mentorDetail($id)
     {
         $qry = DB::table('users')

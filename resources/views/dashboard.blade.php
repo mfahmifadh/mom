@@ -217,8 +217,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Materi</h2>
-          <p>Materi Terbaru</p>
+          <h2>Kelas</h2>
+          <p>Kelas Terbaru</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">

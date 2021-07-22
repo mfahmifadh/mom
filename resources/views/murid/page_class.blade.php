@@ -13,7 +13,7 @@
     </section><!-- End Hero -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
+    {{-- <section id="counts" class="counts section-bg">
       <div class="container">
 
         <div class="row counters">
@@ -41,7 +41,7 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section><!-- End Counts Section --> --}} --}}
 
     <!-- ======= Popular Courses Section ======= -->
     <section id="popular-courses" class="courses">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          @foreach($materis->take(3) as $materi)
+          @foreach($materis as $materi)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
               <img src="{{ url('assets/img/'.$materi->class_photo) }}" class="img-fluid" alt="...">

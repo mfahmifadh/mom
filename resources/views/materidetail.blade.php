@@ -50,7 +50,7 @@
         <ul>
           <li ><a href="{{ url('') }}">Beranda</a></li>
           <li><a href="{{ url('indexmentor') }}">Mentor</a></li>
-          <li class="active"><a href="{{ url('indexmateri') }}">Materi</a></li>
+          <li class="active"><a href="{{ url('indexmateri') }}">Kelas</a></li>
           <li><a href="contact.html">Tentang Kami</a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -76,7 +76,7 @@
       <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
-          <h2>Course Details</h2>
+          <h2>Detail Kelas</h2>
         </div>
       </div><!-- End Breadcrumbs -->
   
