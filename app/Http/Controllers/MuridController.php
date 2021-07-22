@@ -92,6 +92,16 @@ class MuridController extends Controller
     }
     public function GetClass()
     {
+        $booking = DB::table('booking')
+        ->get();
+        $data = [];
+        $i = 0;
+    
+        foreach ($booking as $booking) {
+            $data[$i] = $booking->class_id;
+            $i++;
+        }
+
         $class = DB::table('class')
             ->join('users AS user', 'class.user_id', '=', 'user.id')
             ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
@@ -107,7 +117,8 @@ class MuridController extends Controller
                 'class.class_photo',
                 'class.class_member_max'
             )
-            ->get();
+            ->whereNotIn('class.id', $data)
+            ->get();    
         return view('murid.page_class', ['materis' => $class]);
     }
 

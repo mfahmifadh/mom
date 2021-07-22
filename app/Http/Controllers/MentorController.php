@@ -90,6 +90,39 @@ class MentorController extends Controller
         return view('mentor.page_income', compact('income'));
     }
 
+    public function GetBooking()
+    {
+        $id = Auth::id();
+        $booking = DB::table('booking')
+        ->where('class.id', $id)
+        ->join('class', 'booking.class_id', '=', 'class.id')
+        ->join('users AS user', 'booking.murid_id', '=', 'user.id')
+        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+        ->join('cost', 'booking.id', '=', 'cost.booking_id')
+        ->select(
+            'class.id',
+            'class.user_id',
+            'class.class_name',
+            'class.course_category',
+            'class.class_cost',
+            'class_category.name as category',
+            'booking.start_date',
+            'booking.class_progress',
+            'booking.class_status',
+            'user.name AS murid',
+            'user.phone_number',
+            'class.class_permonth',
+            'class.class_time_perday',
+            'class.class_description',
+            'class.class_photo',
+            'class.class_member_max',
+            'cost.payment_status'
+        )
+        ->get();
+
+        return view('mentor.page_booking', compact('booking'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

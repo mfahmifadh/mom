@@ -1,17 +1,12 @@
-<x-admin-layout>
+<x-mentor-layout>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-              <a href="{{ url('mentor/addCourses') }}" class="btn btn-app">
-                <i class="fas fa-plus-square"></i> Kelas Baru
-              </a>
-          </div>
-          <div class="col-sm-6">
+          <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Booking</li>
             </ol>
           </div>
         </div>
@@ -26,62 +21,50 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Daftar Kelas</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    {{-- <th>Kode</th> --}}
-                    <th>Kode Boking</th>
+                    <th>Kode</th>
                     <th>Nama Murid</th>
-                    <th>Kelas</th>
-                    <th>Jumlah Pertemuan</th>
-                    <th>Tgl. Pembayaran</th>
-                    <th>Total Pembayaran</th>
+                    <th>No. Hp</th>
+                    <th>Nama Kelas</th>
+                    <th>Progress</th>
+                    <th>Status Kelas</th>
+                    <th>Biaya</th>
+                    <th>Jadwal</th>
                     <th>Status Pembayaran</th>
-                    <th>Status Transaksi</th>
-                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach($income as $data)
+                    @foreach($booking as $data)
                     <tr>
-                      {{-- <td>{{ $data->id }}</td> --}}
-                      <td>{{ $data->booking_id }}</td>
-                      <td>{{ $data->student_name }}</td>
+                      <td>{{ $data->id }}</td>
+                      <td>{{ $data->murid }}</td>
+                      <td>{{ $data->phone_number }}</td>
                       <td>{{ $data->class_name }}</td>
-                      <td>{{ $data->class_permonth}} /Bulan</td>
-                      <td>{{ $data->transaction_date }}</td>
-                      <td>Rp {{ $data->total_payment }}</td>
+                      <td>{{ $data->class_progress }}</td>
+                      <td>{{ $data->class_status }}</td>
+                      <td>Rp {{ $data->class_cost }}</td>
+                      <td>{{ $data->class_time_perday }} /Hari - {{ $data->class_permonth }} /Bulan</td>
                       <td><b>{{ $data->payment_status }}</b></td>
-                      <td><b>{{ $data->transaction_status }}</b></td>
-                      <td>
-                          <?php
-                            if ($data->transaction_status == "Approve"){
-
-                            }elseif($data->transaction_status == "Pending"){
-                          ?>
-                              <a href="{{ url('admin/editTransaction', ['id' => $data->id ]) }}" class="fas fa-check"></a>
-                          <?php } ?>
-                          
-                      </td>
                     </tr>
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
-                    {{-- <th>Kode</th> --}}
-                    <th>Kode Boking</th>
+                    <th>Kode</th>
                     <th>Nama Murid</th>
-                    <th>Kelas</th>
-                    <th>Jumlah Pertemuan</th>
-                    <th>Tgl. Pembayaran</th>
-                    <th>Total Pembayaran</th>
+                    <th>No. Hp</th>
+                    <th>Nama Kelas</th>
+                    <th>Progress</th>
+                    <th>Status Kelas</th>
+                    <th>Biaya</th>
+                    <th>Jadwal</th>
                     <th>Status Pembayaran</th>
-                    <th>Status Transaksi</th>
-                    <th>Aksi</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -120,4 +103,4 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-</x-admin-layout>
+</x-mentor-layout>
