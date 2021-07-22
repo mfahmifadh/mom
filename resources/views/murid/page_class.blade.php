@@ -13,7 +13,7 @@
     </section><!-- End Hero -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
+    {{-- <section id="counts" class="counts section-bg">
       <div class="container">
 
         <div class="row counters">
@@ -41,7 +41,7 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section><!-- End Counts Section --> --}} --}}
 
     <!-- ======= Popular Courses Section ======= -->
     <section id="popular-courses" class="courses">
@@ -68,13 +68,13 @@
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                    <span>{{ $materi->mentor }}</span>
+                    <span>{{$materi->mentor}}</span>
                   </div>
-                  <div class="trainer-rank d-flex align-items-center">
+                  {{-- <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;50
                     &nbsp;&nbsp;
                     <i class="bx bx-heart"></i>&nbsp;65
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>

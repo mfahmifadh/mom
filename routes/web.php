@@ -7,6 +7,7 @@ use App\Http\Controllers\MuridController;
 use App\Http\Controllers\recommendationController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,29 @@ Route::get('/tesUas', function () {
 Route::get('/admin/verifikasi-mentor', '\App\Http\Controllers\AdminController@verifikasi');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    $id = Auth::id();
     $mentors = DB::table('users')
         ->where('users.role_id', '=', '3')
         ->join('mentor_data', 'users.id', '=', 'mentor_data.user_id')
         ->where('mentor_data.status_account', '=', '2')
         ->get();
 
-    $materis = DB::table('class')
+    $booking = DB::table('booking')
         ->get();
+
+    $data = [];
+    $i = 0;
+
+    foreach ($booking as $booking) {
+        $data[$i] = $booking->class_id;
+        $i++;
+    }
+
+    $materis = DB::table('class')
+        // ->join('booking', 'class.id', '=', 'booking.class_id')
+        ->whereNotIn('class.id', $data)
+        ->get();
+    // dd($materis);
     return view('dashboard', compact('mentors', 'materis'));
 })->name('dashboard');
 
@@ -52,13 +68,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
         Route::get('/class', [MuridController::class, 'GetClass']);
+        Route::get('/mentor', [MuridController::class, 'GetMentor']);
+        Route::get('/confirm_checkout', function () {
+            return view('murid/confirm_checkout');
+        });
         Route::get('/myclass', [MuridController::class, 'GetMyClass']);
         Route::get('/detail_myclass/{id}', [MuridController::class, 'GetMyClassDetail']);
         Route::get('/checkout/{id_materi}', [MuridController::class, 'checkout']);
         Route::get('/getTransaction', [MentorController::class, 'getTransaction']);
         Route::post('/add_priority', [MuridController::class, 'addPriority']);
         Route::get('/mentordetail/{id_mentor}', [MuridController::class, 'mentorDetail']);
-        
+
         Route::post('/postBooking', [MuridController::class, 'Booking']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {

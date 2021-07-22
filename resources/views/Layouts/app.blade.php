@@ -70,7 +70,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-            <li class="active">
+            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                 <x-jet-nav-link href="{{ route('dashboard') }}">
                     Beranda
                 </x-jet-nav-link>
@@ -80,7 +80,7 @@
                     Tentang
                 </x-jet-nav-link>
             </li>
-            <li>
+            <li class="{{ Request::is('murid/class') ? 'active' : '' }}">
                 @can('manage-users')
                 <x-jet-nav-link href="{{ route('admin.dashboard.index') }}" :active="request()->routeIs('admin.index')">
                     Dashboard
@@ -89,7 +89,7 @@
 
                 @if (auth()->user()->role_id == 2)
                     <x-jet-nav-link href="{{ url('murid/class') }}" :active="request()->routeIs('murid.index')">
-                    Daftar Kelas
+                     Kelas
                     </x-jet-nav-link>
                 @endif
 
@@ -97,6 +97,13 @@
                     <x-jet-nav-link href="{{ url('mentor/mentor_page/'. Auth::user()->id) }}" :active="request()->routeIs('mentor.index')">
                     Dashboard
                     </x-jet-nav-link>
+                @endif
+            </li>
+            <li class="{{ Request::is('murid/mentor') ? 'active' : '' }}">
+                @if (auth()->user()->role_id == 2)
+                <x-jet-nav-link href="{{ url('murid/mentor') }}" :active="request()->routeIs('murid.index')">
+                    Mentor
+                </x-jet-nav-link>
                 @endif
             </li>
             <li>

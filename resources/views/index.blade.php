@@ -50,7 +50,7 @@
         <ul>
           <li class="active"><a href="{{ url('') }}">Beranda</a></li>
           <li><a href="{{ url('indexmentor') }}">Mentor</a></li>
-          <li><a href="{{ url('indexmateri') }}">Materi</a></li>
+          <li><a href="{{ url('indexmateri') }}">Kelas</a></li>
           <li><a href="contact.html">Tentang Kami</a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -119,7 +119,7 @@
 
           <div class="col-lg-3 col-6 text-center">
             <span data-toggle="counter-up">60</span>
-            <p>Materi</p>
+            <p>Kelas</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
@@ -273,8 +273,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Materi</h2>
-          <p>Materi Terbaru</p>
+          <h2>Kelas</h2>
+          <p>Kelas Terbaru</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
