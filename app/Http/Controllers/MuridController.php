@@ -43,12 +43,13 @@ class MuridController extends Controller
 
     public function Detail($id)
     {
-        $qry = DB::table('class')
-            ->where('class.id', $id)
-            ->join('users AS user', 'class.user_id', '=', 'user.id')
-            ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
-            ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
-            ->get();
+        $qry        = DB::table('class')
+                    ->where('class.id', $id)
+                    ->join('users AS user', 'class.user_id', '=', 'user.id')
+                    ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+                    ->select('class.id', 'class.class_name', 'class.course_category', 'class.class_cost', 'class_category.name', 'user.name AS mentor', 'class.class_permonth', 'class.class_description', 'class.class_photo', 'class.class_member_max')
+                    ->get();
+
         return view('murid.materidetails', ['materi' => $qry]);
     }
 
@@ -155,7 +156,55 @@ class MuridController extends Controller
         return view('murid.confirm_checkout')->with('alert-success', 'Berhasil Menambah Data!');
     }
 
-    public function GetTransaction()
+    public function GetMyClass()
     {
+        $id = Auth::id();
+        $class = DB::table('booking')
+        ->where('booking.murid_id', $id)
+        ->join('class', 'booking.class_id', '=', 'class.id')
+        ->join('users AS user', 'class.user_id', '=', 'user.id')
+        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+        ->select(
+            'class.id',
+            'class.class_name',
+            'class.course_category',
+            'class.class_cost',
+            'class_category.name',
+            'booking.start_date',
+            'booking.class_progress',
+            'user.name AS mentor',
+            'class.class_permonth',
+            'class.class_description',
+            'class.class_photo',
+            'class.class_member_max'
+        )
+        ->get();
+        return view('murid.myclass', compact('class'));
+    }
+
+    public function GetMyClassDetail($id)
+    {
+        $detail_class = DB::table('booking')
+        ->where('booking.class_id', $id)
+        ->join('class', 'booking.class_id', '=', 'class.id')
+        ->join('users AS user', 'class.user_id', '=', 'user.id')
+        ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
+        ->select(
+            'class.id',
+            'class.user_id',
+            'class.class_name',
+            'class.course_category',
+            'class.class_cost',
+            'class_category.name',
+            'booking.start_date',
+            'booking.class_progress',
+            'user.name AS mentor',
+            'class.class_permonth',
+            'class.class_description',
+            'class.class_photo',
+            'class.class_member_max'
+        )
+        ->get();
+        return view('murid.detail_myclass', ['materi' => $detail_class]);
     }
 }

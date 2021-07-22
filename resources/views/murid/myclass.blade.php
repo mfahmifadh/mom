@@ -48,23 +48,25 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Materi</h2>
-          <p>Materi Terbaru</p>
+          <h2>Kelas</h2>
+          <p>Kelasku</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          @foreach($materis as $materi)
+          @foreach($class as $data)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item" style="margin-bottom:5vh;">
-              <img src="{{ url('assets/img/'.$materi->class_photo) }}" class="img-fluid" alt="...">
+              <img src="{{ url('assets/img/'.$data->class_photo) }}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4>{{$materi->course_category}}</h4>
-                  <p class="price">Rp.{{$materi->class_cost}}</p>
+                  <h4>{{$data->course_category}}</h4>
+                  <p class="price">Rp.{{$data->class_cost}}</p>
                 </div>
 
-                <h3><a href="{{ url ('murid/dashboardmateri/'. $materi->id) }}">{{$materi->class_name}}</a></h3>
-                <p>{{$materi->class_description}}</p>
+                <h6>{{ $data->start_date }}</h6>
+                <h3><a href="{{ url ('murid/detail_myclass/'. $data->id) }}">{{$data->class_name}}</a></h3>
+                <b>Total {{ $data->class_permonth }}</b>
+                <p>{{$data->class_description}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">

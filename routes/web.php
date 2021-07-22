@@ -52,13 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboardmateri/{id_materi}', [MuridController::class, 'Detail']);
         Route::get('/recommendmentor', [MuridController::class, 'recommend']);
         Route::get('/class', [MuridController::class, 'GetClass']);
-        Route::get('/confirm_checkout', function () {
-            return view('murid/confirm_checkout');
-        });
+        Route::get('/myclass', [MuridController::class, 'GetMyClass']);
+        Route::get('/detail_myclass/{id}', [MuridController::class, 'GetMyClassDetail']);
         Route::get('/checkout/{id_materi}', [MuridController::class, 'checkout']);
         Route::get('/getTransaction', [MentorController::class, 'getTransaction']);
         Route::post('/add_priority', [MuridController::class, 'addPriority']);
         Route::get('/mentordetail/{id_mentor}', [MuridController::class, 'mentorDetail']);
+        
         Route::post('/postBooking', [MuridController::class, 'Booking']);
     });
     Route::group(['middleware' => 'role:mentor', 'prefix' => 'mentor', 'as' => 'mentor.'], function () {
