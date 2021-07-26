@@ -41,6 +41,7 @@ class AdminController extends Controller
                 'cost.total_payment',
                 'cost.payment_status',
                 'cost.transaction_status',
+                'cost.receipt',
                 'users.name as student_name',
                 'users.email',
                 'class.class_name',
@@ -78,9 +79,29 @@ class AdminController extends Controller
     }
 
 
-    public function show($id)
+    public function checkReceipt($id)
     {
-        //
+        $getFoto = DB::table("cost")
+        ->join('users', 'cost.murid_id', '=', 'users.id')
+        ->join('booking', 'cost.booking_id', '=', 'booking.id')
+        ->join('class', 'booking.class_id', '=', 'class.id')
+        ->select(
+            'cost.id',
+            'cost.booking_id',
+            'cost.transaction_date',
+            'cost.total_payment',
+            'cost.payment_status',
+            'cost.transaction_status',
+            'cost.receipt',
+            'users.name as student_name',
+            'users.email',
+            'class.class_name',
+            'class.class_time_perday',
+            'class.class_permonth',
+        )
+        ->where('cost.id', $id)
+        ->get();
+        return view('admin.checkReceipt',['data'=> $getFoto]);
     }
 
 

@@ -102,5 +102,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('dashboard', \App\Http\Controllers\AdminController::class);
         Route::get('/transaction', [AdminController::class, 'transaction']);
         Route::get('/editTransaction/{id}', [AdminController::class, 'editTransaction']);
+        Route::get('/checkReceipt/{id}', [AdminController::class, 'checkReceipt']);
     });
 });

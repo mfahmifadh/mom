@@ -63,7 +63,8 @@
 
                             }elseif($data->transaction_status == "Pending"){
                           ?>
-                              <a href="{{ url('admin/editTransaction', ['id' => $data->id ]) }}" class="fas fa-check"></a>
+                              <a href="{{ url('admin/checkReceipt', ['id' => $data->id ]) }}" class="fas fa-check"></a>
+                             
                           <?php } ?>
                           
                       </td>
@@ -98,7 +99,7 @@
     </section>
     <!-- /.content -->
 
-    <div class="modal fade" id="modal-lg">
+    {{-- <div class="modal fade" id="modal-lg">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -119,5 +120,5 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <!-- /.modal -->
+      <!-- /.modal --> --}}
 </x-admin-layout>
