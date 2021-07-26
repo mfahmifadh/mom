@@ -23,7 +23,7 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>Tentang :</label>
+                        <label>Deskripsi Diri :</label>
                         <textarea name="about" class="form-control" required></textarea>
                     </div>
                     <div class="form-group col-md-6">
@@ -31,7 +31,7 @@
                         <textarea name="education_history" class="form-control" required></textarea>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Pengalaman : </label>
+                        <label>Pengalaman Kerja : </label>
                         <textarea name="experience" class="form-control" required></textarea>
                     </div>
                     <div class="form-group col-md-6">

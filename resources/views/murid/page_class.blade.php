@@ -53,10 +53,10 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          @foreach($materis as $materi)
+          @foreach($materis as $materi) 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item" style="margin-bottom:5vh;">
-              <img src="{{ url('assets/img/'.$materi->class_photo) }}" class="img-fluid" alt="...">
+              <img src="{{ url('assets/img/' .$materi->class_photo) }}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4>{{$materi->course_category}}</h4>

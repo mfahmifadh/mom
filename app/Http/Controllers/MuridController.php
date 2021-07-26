@@ -174,7 +174,7 @@ class MuridController extends Controller
         }
 
         $transaction->save();
-        return view('murid.confirm_checkout')->with('alert-success', 'Berhasil Menambah Data!');
+        return redirect('murid/myclass')->with('alert-success', 'Berhasil Menambah Data!');
     }
 
     public function GetMyClass()
@@ -182,6 +182,7 @@ class MuridController extends Controller
         $id = Auth::id();
         $class = DB::table('booking')
         ->where('booking.murid_id', $id)
+        ->join('cost', 'booking.id', '=', 'cost.booking_id')
         ->join('class', 'booking.class_id', '=', 'class.id')
         ->join('users AS user', 'class.user_id', '=', 'user.id')
         ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
@@ -191,6 +192,8 @@ class MuridController extends Controller
             'class.course_category',
             'class.class_cost',
             'class_category.name',
+            'cost.payment_status',
+            'cost.transaction_status',
             'booking.start_date',
             'booking.class_progress',
             'user.name AS mentor',
