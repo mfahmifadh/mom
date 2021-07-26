@@ -64,19 +64,40 @@
                 </div>
 
                 <h6>{{ $data->start_date }}</h6>
-                <h3><a href="{{ url ('murid/detail_myclass/'. $data->id) }}">{{$data->class_name}}</a></h3>
+                <h3>
+
+                @if ($data->transaction_status == 'Approve')
+                    <x-jet-nav-link href="{{ url ('murid/detail_myclass/'. $data->id) }}">
+                    <h3> {{$data->class_name}} </h3>
+                    </x-jet-nav-link>
+                @endif
+
+                @if ($data->transaction_status == 'Pending')
+                    <x-jet-nav-link>
+                    <h3> {{$data->class_name}} </h3>
+                    </x-jet-nav-link>
+                @endif  
+              </h3>
                 <b>Total {{ $data->class_permonth }}</b>
                 <p>{{$data->class_description}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
                     <span>{{$data->mentor}}</span>
                   </div>
-                  {{-- <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
-                  </div> --}}
+                </div>
+                <br>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <span>
+                      <?php
+                        if( $data->transaction_status == 'Approve'){
+                          echo "<h6 style='color:green;font-weight:bold;'>TELAH DI BAYAR</h6>";
+                        }else if( $data->transaction_status == 'Pending'){
+                          echo "<h6 style='color:orange;font-weight:bold;'>DIPROSES</h6>";
+                        }
+                      ?>
+                      </span>
+                  </div>
                 </div>
               </div>
             </div>
