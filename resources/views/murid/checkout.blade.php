@@ -85,6 +85,23 @@
                         </div>
                         <div class="p-1 d-flex">
                             <div class="col">
+                                <input type="hidden" class="form-control" name="total_payment" value="{{ $item->class_cost }}">
+                                <label style="font-weight:bold;">Metode Pembayaran : </label>
+                                {{-- <div class="d-flex flex-row align-content-center">
+                                    <div class="rounded border d-flex w-100 px-2">
+                                        <div class="pt-2">
+                                            <p><i class="fas fa-credit-card"></i>Mandiri</p>
+                                        </div>
+                                        <div class="ml-auto pt-2">1920100192913</div>
+                                    </div>
+                                </div> --}}
+                                <br>
+                                <label>DANA</label>
+                                <img src="{{url('assets/img/barcode.png')}}" width="300" height="300" alt="">
+                            </div>
+                        </div>
+                        <div class="p-1 d-flex">
+                            <div class="col">
                                 <label style="font-weight:bold;">Bukti Pembayaran : </label>
                                 <input type="file" class="form-control" name="receipt" required>
                             </div>
