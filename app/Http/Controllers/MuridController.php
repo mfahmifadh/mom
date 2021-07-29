@@ -214,6 +214,7 @@ class MuridController extends Controller
         ->join('users AS user', 'class.user_id', '=', 'user.id')
         ->join('class_category', 'class.class_category_id', '=', 'class_category.id')
         ->select(
+            'user.phone_number',
             'class.id',
             'class.user_id',
             'class.class_name',

@@ -35,16 +35,6 @@
                     <h5>Kategori</h5>
                     <p>{{$item->course_category}}</p>
                   </div>
-      
-                  <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Harga</h5>
-                    <p>{{$item->class_cost}}</p>
-                  </div>
-      
-                  <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Maximal Member</h5>
-                    <p>{{$item->class_member_max}}</p>
-                  </div>
 
                   <div class="course-info d-flex justify-content-between align-items-center">
                     <h5>Progress</h5>
@@ -54,6 +44,11 @@
                   <div class="course-info d-flex justify-content-between align-items-center">
                     <h5>Total Pertemuan</h5>
                     <p>{{$item->class_permonth}}</p>
+                  </div>
+
+                  <div class="course-info d-flex justify-content-between align-items-center">
+                    <h5>Kontak</h5>
+                    <p><a href="{{$item->phone_number}}">Link WhatsApp</a></p>
                   </div>
                   @endforeach
                 </div>
